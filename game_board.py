@@ -1,6 +1,11 @@
 class GameBoard:
     def __init__(self, size):
         self.size = size
+        if self.size > 0:
+            self.okay = True
+        else:
+            self.okay = False
+            raise IndexError
 
     def draw_board(self):
         length = (self.size * 2) + 1
@@ -14,9 +19,8 @@ class GameBoard:
                 print(*board_list[i])
         return
 
-
-    def check_board(self, board):
-        win_check = False
-        for i in range(3):
-            for k in range(3):
-                if board[i][k]
+    # def check_board(self, board):
+    #     win_check = False
+    #     for i in range(self.size):
+    #         for k in range(self.size):
+    #             if board[]
