@@ -24,7 +24,7 @@ class GameBoard:
     def check_board(self, board):
         """
         checks board layout for win
-        TODO: only working on first lineq column- fix it again Tony...
+        TODO: only working on first line column- fix it again Tony...
         :param board:
         :return:
         """
@@ -41,4 +41,7 @@ class GameBoard:
                 elif (board[i][k+2] == board[i + 1][k + 1] and board[i + 1][k + 1] == board[i + 2][k])\
                         and board[i][k] != ' ':
                     win_check = True
+        for row in range((self.size - 2), self.size):
+            for col in range((self.size - 2), self.size):
+
         return win_check
