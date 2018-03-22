@@ -8,5 +8,5 @@ def main():
     my_board.draw_board()
     print(my_board.check_board(my_board.board_layout))
 
-main()
 
+main()

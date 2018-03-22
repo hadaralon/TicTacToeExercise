@@ -1,3 +1,6 @@
+from shape_enum import Shape
+
+
 class GameBoard:
     def __init__(self, size, board_layout):
         self.size = size
@@ -21,27 +24,30 @@ class GameBoard:
                 print(*board_list[i])
         return
 
-    def check_board(self, board):
+    def check_board(self, board, xVal, yVal):
         """
         checks board layout for win
         TODO: only working on first line column- fix it again Tony...
         :param board:
         :return:
         """
-        win_check = False
-        for i in range(self.size - 2):
-            for k in range(self.size - 2):
-                if (board[i][k] == board[i][k + 1] and board[i][k + 1] == board[i][k + 2]) and board[i][k] != ' ':
-                    win_check = True
-                elif (board[i][k] == board[i + 1][k] and board[i + 1][k] == board[i + 2][k]) and board[i][k] != ' ':
-                    win_check = True
-                elif (board[i][k] == board[i + 1][k + 1] and board[i + 1][k + 1] == board[i + 2][k + 2])\
-                        and board[i][k] != ' ':
-                    win_check = True
-                elif (board[i][k+2] == board[i + 1][k + 1] and board[i + 1][k + 1] == board[i + 2][k])\
-                        and board[i][k] != ' ':
-                    win_check = True
-        for row in range((self.size - 2), self.size):
-            for col in range((self.size - 2), self.size):
+        for idx in range(self.size - 2):
+            if board[xVal][idx] == board[xVal][idx + 1] == board[xVal][idx + 2]:
+                return True
+            elif board[idx][yVal] == board[idx + 1][yVal] == board[idx + 2][yVal]:
+                return True
+        # xy_diff = xVal - yVal
+        # for x in range(self.size - 2):
+        #     for y in range(self.size - 2):
+        #         if x - y == xy_diff:
+        #             try:
+        #
+        #             except:
+        #                 pass
+        #
+        # xy_sum = xVal + yVal
 
-        return win_check
+    def make_move(self, board, shape, xVal, yVal):
+        board[xVal][yVal] = Shape(shape)
+        if self.check_board:
+            print(Shape(shape) + 'Wins!')
