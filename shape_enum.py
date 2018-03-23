@@ -5,5 +5,5 @@ class Shapes(Enum):
     """
     'x' for X, 'o' for O
     """
-    X = 'x', 0
-    O = 'o', 1
+    X = 0
+    O = 1
