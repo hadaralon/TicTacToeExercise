@@ -65,11 +65,11 @@ class GameBoard:
         :param y_val:
         :return: bool: False if game is over, else True
         """
-        if self.board_layout[x_val][y_val] is ' ':
-            self.board_layout[x_val][y_val] = Shapes(shape)
+        if self.board_layout[x_val][y_val] == ' ':
+            self.board_layout[x_val][y_val] = Shapes(shape) # TODO: fix drawing board.
             self.move_count += 1
             if self.check_board:
-                print(Shapes(shape) + 'Wins!')
+                print(Shapes(shape).name + 'Wins!')
                 return False
             elif self.move_count == self.size ** 2:
                 print('It\'s a draw!')
@@ -78,3 +78,14 @@ class GameBoard:
                 return True
         else:
             raise IndexError
+
+    def get_coordinates(self):
+        """
+        get row/col input
+        :return: tuple: coordinate
+        """
+        x_val = int(input('Enter row number: '))
+        y_val = int(input('Enter column number: '))
+        if x_val >= self.size or y_val >= self.size:
+            raise IndexError
+        return x_val, y_val
