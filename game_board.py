@@ -20,6 +20,16 @@ class GameBoard:
             raise IndexError
         self.board_layout = [[' '] * self.size] * self.size
 
+    def __set__(self, x_val, y_val, value):
+        """
+        sets a shape for a single spot
+        :param x_val: ...
+        :param y_val: ...
+        :param value: shape
+        :return:
+        """
+        self.board_layout[x_val][y_val] = value  # TODO: check how to set property...
+
     def draw_board(self):
         """
         print current board layout.
@@ -33,9 +43,8 @@ class GameBoard:
                 print(*board_list[i])
             else:
                 board_list[i] = [
-                    self.board_layout[int((i - 1) / 2)][int((k - 2) / 4)] if ((k - 2) % 4 == 0) else " " if (
-                                k % 4 != 0) else "|" for
-                    k in range(4 * self.size + 1)]
+                    self.board_layout[int((i - 1) / 2)][int((k - 2) / 4)] if ((k - 2) % 4 == 0) else " " if (k % 4 != 0)
+                    else "|" for k in range(4 * self.size + 1)]
                 print(*board_list[i])
         return
 
@@ -66,7 +75,7 @@ class GameBoard:
         :return: bool: False if game is over, else True
         """
         if self.board_layout[x_val][y_val] == ' ':
-            self.board_layout[x_val][y_val] = Shapes(shape) # TODO: fix drawing board.
+            self.__set__(x_val, y_val, shape)
             self.move_count += 1
             if self.check_board:
                 print(Shapes(shape).name + 'Wins!')
@@ -86,6 +95,10 @@ class GameBoard:
         """
         x_val = int(input('Enter row number: '))
         y_val = int(input('Enter column number: '))
-        if x_val >= self.size or y_val >= self.size:
+        if not (0 <= x_val < self.size) or not (0 <= y_val < self.size):
+            raise IndexError
+        if x_val is None or y_val is None:  # TODO: check how to avoid getting None as an input
             raise IndexError
         return x_val, y_val
+
+

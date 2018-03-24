@@ -3,7 +3,7 @@ from enum import Enum
 
 class Shapes(Enum):
     """
-    'x' for X, 'o' for O
+    0 for X, 1 for O
     """
     X = 0
     O = 1
